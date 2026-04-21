@@ -1,0 +1,29 @@
+{
+  "name": "your-language-name",
+  "version": "1.0.0",
+  "description": "A compiler for [Your Language Name], a programming language designed for CMSI 3802.",
+  "type": "module",
+  "author": [
+    "Student One <student1@lion.lmu.edu>",
+    "Student Two <student2@lion.lmu.edu>",
+    "Student Three <student3@lion.lmu.edu>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/your-repo.git"
+  },
+  "homepage": "https://your-org.github.io/your-repo",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage"
+  },
+  "dependencies": {
+    "ohm-js": "^17.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {}
+  }
+}
