@@ -1,0 +1,98 @@
+Fe {
+  Program     = Statement*
+
+  Statement   = FunDecl
+              | VarDecl
+              | ConstDecl
+              | ClassDecl
+              | ReturnStmt
+              | BreakStmt
+              | ContinueStmt
+              | IfStmt
+              | WhileStmt
+              | ForStmt
+              | PrintStmt
+              | AssignStmt
+              | ExprStmt
+
+  FunDecl     = "fun" id "(" Params ")" (":" Type)? Block
+  Params      = ListOf<Param, ",">
+  Param       = id ":" Type
+
+  VarDecl     = "let" id (":" Type)? "=" Exp ";"
+  ConstDecl   = "const" id (":" Type)? "=" Exp ";"
+
+  ClassDecl   = "class" id ("{" ClassMember* "}")?
+
+  ClassMember = FunDecl
+              | VarDecl
+              | ConstDecl
+
+  ReturnStmt  = "return" Exp? ";"
+  BreakStmt   = "break" ";"
+  ContinueStmt = "continue" ";"
+
+  IfStmt      = "if" "(" Exp ")" Block ("else" (IfStmt | Block))?
+
+  WhileStmt   = "while" "(" Exp ")" Block
+
+  ForStmt     = "for" "(" (VarDecl | AssignStmt | ";") Exp? ";" Exp? ")" Block
+
+  PrintStmt   = "print" "(" Exp ")" ";"
+
+  AssignStmt  = Exp "=" Exp ";"
+
+  ExprStmt    = Exp ";"
+
+  Block       = "{" Statement* "}"
+
+  Type        = ArrayType | PrimType
+  PrimType    = "int" | "float" | "bool" | "string" | "void" | id
+  ArrayType   = "[" Type "]"
+
+  Exp         = Exp "||" Exp1  -- or
+              | Exp1
+  Exp1        = Exp1 "&&" Exp2  -- and
+              | Exp2
+  Exp2        = Exp3 relop Exp3  -- rel
+              | Exp3
+  Exp3        = Exp3 addop Exp4  -- add
+              | Exp4
+  Exp4        = Exp4 mulop Exp5  -- mul
+              | Exp5
+  Exp5        = "!" Exp5         -- not
+              | "-" Exp5         -- neg
+              | Exp6
+  Exp6        = Exp6 "." id "(" Args ")"  -- methodCall
+              | Exp6 "." id               -- member
+              | Exp6 "[" Exp "]"          -- subscript
+              | Exp7
+  Exp7        = id "(" Args ")"   -- call
+              | "(" Exp ")"       -- paren
+              | "[" ListOf<Exp, ","> "]"  -- array
+              | boollit
+              | floatlit
+              | intlit
+              | strlit
+              | id
+
+  Args        = ListOf<Exp, ",">
+
+  relop       = "<=" | ">=" | "==" | "!=" | "<" | ">"
+  addop       = "+" | "-"
+  mulop       = "*" | "/" | "%"
+
+  boollit     = "true" | "false"
+  intlit      = digit+
+  floatlit    = digit+ "." digit+
+  strlit      = "\"" (~"\"" any)* "\""
+
+  id          = ~keyword letter (letter | digit | "_")*
+  keyword     = ("let" | "const" | "fun" | "class" | "return" | "break"
+              | "continue" | "if" | "else" | "while" | "for" | "print"
+              | "true" | "false" | "int" | "float" | "bool" | "string"
+              | "void" | "new") ~(letter | digit | "_")
+
+  space      += "//" (~"\n" any)*   -- lineComment
+             | "/*" (~"*/" any)* "*/"  -- blockComment
+}

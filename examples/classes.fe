@@ -1,0 +1,44 @@
+// Class-based object-oriented example
+// Demonstrates: classes, methods, member variables, method calls
+
+class Counter {
+  let count: int = 0;
+  
+  fun increment(): void {
+    count = count + 1;
+    return;
+  }
+  
+  fun decrement(): void {
+    count = count - 1;
+    return;
+  }
+  
+  fun getCount(): int {
+    return count;
+  }
+}
+
+class Dog {
+  let name: string = "Rex";
+  let age: int = 3;
+  
+  fun bark(): void {
+    print("Woof!");
+    return;
+  }
+  
+  fun setAge(newAge: int): void {
+    age = newAge;
+    return;
+  }
+}
+
+class Point {
+  let x: float = 0.0;
+  let y: float = 0.0;
+  
+  fun distance(): float {
+    return x * x + y * y;
+  }
+}

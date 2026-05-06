@@ -1,21 +1,17 @@
 {
-  "name": "your-language-name",
+  "name": "fe",
   "version": "1.0.0",
-  "description": "A compiler for [Your Language Name], a programming language designed for CMSI 3802.",
+  "description": "Fe: A statically typed language that compiles to JavaScript",
   "type": "module",
-  "author": [
-    "Student One <student1@lion.lmu.edu>",
-    "Student Two <student2@lion.lmu.edu>",
-    "Student Three <student3@lion.lmu.edu>"
-  ],
+  "author": "Kushal Jayaswal <kjayaswal@lion.lmu.edu>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/your-repo.git"
+    "url": "https://github.com/kushalj11/Fe.git"
   },
-  "homepage": "https://your-org.github.io/your-repo",
+  "homepage": "https://kushalj11.github.io/Fe",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
   "dependencies": {
     "ohm-js": "^17.1.0"

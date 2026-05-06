@@ -1,0 +1,40 @@
+// Bubble sort algorithm with array manipulation
+// Demonstrates: arrays, loops, array indexing, boolean logic
+
+fun bubbleSort(arr: [int], n: int): void {
+  let i: int = 0;
+  while (i < n) {
+    let j: int = 0;
+    while (j < n - i - 1) {
+      if (arr[j] > arr[j + 1]) {
+        let temp: int = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+      j = j + 1;
+    }
+    i = i + 1;
+  }
+  return;
+}
+
+fun printArray(arr: [int], n: int): void {
+  let i: int = 0;
+  while (i < n) {
+    print(arr[i]);
+    i = i + 1;
+  }
+  return;
+}
+
+// Create and populate array
+let numbers: [int] = [64, 34, 25, 12, 22, 11, 90];
+let size: int = 7;
+
+print("Before sorting:");
+printArray(numbers, size);
+
+bubbleSort(numbers, size);
+
+print("After sorting:");
+printArray(numbers, size);
